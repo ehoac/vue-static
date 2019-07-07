@@ -12,11 +12,9 @@ const Axios = axios.create({
     alert(data)
     return data
   }], */
+  timeout: 5000,
   responseType: 'json',
-  withCredentials: true,
-  headers: {
-    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
-  }
+  withCredentials: true
 })
 
 Axios.interceptors.request.use(config => {
@@ -25,6 +23,22 @@ Axios.interceptors.request.use(config => {
     promiseArr[config.url] = cancel
   } else {
     promiseArr[config.url] = cancel
+  }
+  config.headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8'
+  const defParam = {
+    version: process.env.version,
+    platform: 'pc-web'
+  }
+  if (config.method === 'post') {
+    config.data = {
+      ...defParam,
+      ...config.data
+    }
+  } else if (config.method === 'get') {
+    config.params = {
+      ...defParam,
+      ...config.params
+    }
   }
   return config
 }, err => {
