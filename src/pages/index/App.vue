@@ -36,7 +36,7 @@
   </div>
 </template>
 <script>
-import newsList from '@/modules/api/news/get_news.js'
+import newsList from '@/modules/api/news/base.js'
 
 export default {
   data () {
