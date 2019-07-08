@@ -28,6 +28,9 @@ npm test
 ```
 
 ## 分支
+
+``` branch
 master    主分支
 dev-v1.0  开发分支
 base-v1.0   基本结构保留分支
+```
