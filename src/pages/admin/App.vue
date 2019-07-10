@@ -1,27 +1,40 @@
 <template>
-  <div class="layout">
+  <div class="layout main">
     <Layout>
       <Sider ref="side1" hide-trigger collapsible :collapsed-width="78" v-model="isCollapsed">
-        <Menu active-name="1-2" theme="dark" width="auto" :class="menuitemClasses">
-          <MenuItem name="1-1">
-            <Icon type="ios-navigate"></Icon>
-            <span>Option 1</span>
-          </MenuItem>
-          <MenuItem name="1-2">
-            <Icon type="ios-search"></Icon>
-            <span>Option 2</span>
-          </MenuItem>
-          <MenuItem name="1-3">
-            <Icon type="ios-settings"></Icon>
-            <span>Option 3</span>
-          </MenuItem>
+        <Menu active-name="1-2" theme="dark" width="auto" :open-names="['1']">
+          <Submenu name="1">
+            <template slot="title">
+              <Icon type="ios-navigate"></Icon>
+              Item 1
+            </template>
+            <MenuItem name="1-1">Option 1</MenuItem>
+            <MenuItem name="1-2">Option 2</MenuItem>
+            <MenuItem name="1-3">Option 3</MenuItem>
+          </Submenu>
+          <Submenu name="2">
+            <template slot="title">
+              <Icon type="ios-keypad"></Icon>
+              Item 2
+            </template>
+            <MenuItem name="2-1">Option 1</MenuItem>
+            <MenuItem name="2-2">Option 2</MenuItem>
+          </Submenu>
+          <Submenu name="3">
+            <template slot="title">
+              <Icon type="ios-analytics"></Icon>
+              Item 3
+            </template>
+            <MenuItem name="3-1">Option 1</MenuItem>
+            <MenuItem name="3-2">Option 2</MenuItem>
+          </Submenu>
         </Menu>
       </Sider>
         <Layout>
           <Header :style="{padding: 0}" class="layout-header-bar">
             <Icon @click.native="collapsedSider" :class="rotateIcon" :style="{margin: '0 20px'}" type="md-menu" size="24"></Icon>
           </Header>
-          <Content :style="{margin: '20px', background: '#fff', minHeight: '260px'}">
+          <Content class='container' :style="{margin: '20px', background: '#fff', minHeight: '260px'}">
             Content
           </Content>
         </Layout>
@@ -29,11 +42,15 @@
   </div>
 </template>
 <script>
+import API from '@/modules/api/index'
 export default {
   data () {
     return {
       isCollapsed: false
     }
+  },
+  mounted () {
+    console.log(API.note.getNoteMenu())
   },
   computed: {
     rotateIcon () {
@@ -60,7 +77,7 @@ export default {
 .layout{
   border: 1px solid #d7dde4;
   background: #f5f7f9;
-  position: relative;
+  /* position: relative; */
   border-radius: 4px;
   overflow: hidden;
 }

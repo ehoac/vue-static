@@ -1,0 +1,21 @@
+import Vue from 'vue'
+import App from './App'
+import router from './router'
+import iView from 'iview'
+import 'iview/dist/styles/iview.css'
+import '@/pages/index/assets/css/common.css'
+import Http from '../../modules/http.js'
+import '../../modules/mock/index.js'
+
+Vue.use(iView)
+Vue.http = Vue.prototype.$http = Http
+
+Vue.config.productionTip = false
+
+/* eslint-disable no-new */
+new Vue({
+  el: '#app',
+  router,
+  components: { App },
+  template: '<App/>'
+})
