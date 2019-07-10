@@ -15,6 +15,21 @@ const pMenu = function () {
   }
 }
 
+const selfTopMenu = function () {
+  let topMenu = []
+  for (let i = 0; i < 5; i++) {
+    let item = {
+      code: Random.increment(1),
+      name: Random.cword(2, 5)
+    }
+    topMenu.push(item)
+  }
+  return {
+    topMenu: topMenu
+  }
+}
+
 export default {
-  menu: () => pMenu()
+  menu: () => pMenu(),
+  selfTopMenu: () => selfTopMenu()
 }

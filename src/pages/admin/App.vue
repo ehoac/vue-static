@@ -50,7 +50,9 @@ export default {
     }
   },
   mounted () {
-    console.log(API.note.getNoteMenu())
+    API.note.selfTopMenu().then(res => {
+      console.log(res.data)
+    })
   },
   computed: {
     rotateIcon () {

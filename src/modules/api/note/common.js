@@ -8,6 +8,14 @@ const getNoteMenu = function (params) {
   })
 }
 
+const selfTopMenu = function () {
+  return http({
+    url: '/note/selfTopMenu',
+    method: 'get'
+  })
+}
+
 export default {
-  getNoteMenu: data => getNoteMenu(data)
+  getNoteMenu: data => getNoteMenu(data),
+  selfTopMenu: () => selfTopMenu()
 }
